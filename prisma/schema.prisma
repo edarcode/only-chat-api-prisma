@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -30,22 +24,22 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  users   Friend[] @relation("users")
-  friends Friend[] @relation("friends")
+  follower  Follow[] @relation("follower")
+  following Follow[] @relation("following")
 
-  issuers   Message[] @relation("issuers")
-  receptors Message[] @relation("receptors")
+  issuer   Message[] @relation("issuer")
+  receptor Message[] @relation("receptor")
 }
 
-model Friend {
-  userId    String
-  friendId  String
-  createdAt DateTime @default(now())
+model Follow {
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
 
-  users   User @relation("users", fields: [userId], references: [id], onDelete: Cascade)
-  friends User @relation("friends", fields: [friendId], references: [id], onDelete: Cascade)
+  follower  User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
 
-  @@id([userId, friendId])
+  @@id([followerId, followingId])
 }
 
 model Message {
@@ -54,8 +48,8 @@ model Message {
   createdAt  DateTime @default(now())
   text       String
 
-  issuers   User @relation("issuers", fields: [issuerId], references: [id], onDelete: Cascade)
-  receptors User @relation("receptors", fields: [receptorId], references: [id], onDelete: Cascade)
+  issuer   User @relation("issuer", fields: [issuerId], references: [id], onDelete: Cascade)
+  receptor User @relation("receptor", fields: [receptorId], references: [id], onDelete: Cascade)
 
   @@id([issuerId, receptorId, createdAt])
 }
