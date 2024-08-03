@@ -15,15 +15,47 @@ datasource db {
 
 enum Role {
   BOSS
-  ADMIN
   CLIENT
 }
 
 model User {
-  id       String  @id @default(uuid())
-  name     String
-  email    String  @unique
-  password String
-  isAuth   Boolean @default(false)
-  role     Role    @default(CLIENT)
+  id        String   @id @default(uuid())
+  name      String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      Role     @default(CLIENT)
+  img       String?
+  isAuth    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users   Friend[] @relation("users")
+  friends Friend[] @relation("friends")
+
+  issuers   Message[] @relation("issuers")
+  receptors Message[] @relation("receptors")
+}
+
+model Friend {
+  userId    String
+  friendId  String
+  createdAt DateTime @default(now())
+
+  users   User @relation("users", fields: [userId], references: [id], onDelete: Cascade)
+  friends User @relation("friends", fields: [friendId], references: [id], onDelete: Cascade)
+
+  @@id([userId, friendId])
+}
+
+model Message {
+  issuerId   String
+  receptorId String
+  createdAt  DateTime @default(now())
+  text       String
+
+  issuers   User @relation("issuers", fields: [issuerId], references: [id], onDelete: Cascade)
+  receptors User @relation("receptors", fields: [receptorId], references: [id], onDelete: Cascade)
+
+  @@id([issuerId, receptorId, createdAt])
 }

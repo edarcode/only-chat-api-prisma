@@ -67,11 +67,11 @@ npm run dev
 
 Están dividas por modulos:
 
-### welcome
+### WELCOME
 
 - http://localhost:3000
 
-### user
+### USER
 
 Este modulo contine información sencible, por lo que algunas rutas estan protegidas.
 
