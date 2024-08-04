@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { connDb } from "../../../db/connDb";
 
-export const getUsersService = async (params: Params = {}) => {
+export const readUsersService = async (params: Params = {}) => {
   const { page = 1, take = 6, name } = params;
 
   const where: Where = {
