@@ -1,3 +1,3 @@
 import { z } from "zod";
 
-export const imgSchema = z.string();
+export const imgSchema = z.string().url();

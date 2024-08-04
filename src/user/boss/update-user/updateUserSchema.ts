@@ -1,21 +1,6 @@
-import z from "zod";
-import { emailSchema } from "../../../zod-schema/emailSchema";
-import { nameSchema } from "../../../zod-schema/nameSchema";
-import { passwordSchema } from "../../../zod-schema/passwordSchema";
-import { roleSchema } from "../../../zod-schema/roleSchema";
-import { usernameSchema } from "../../../zod-schema/usernameSchema";
-import { imgSchema } from "../../../zod-schema/imgSchema";
+import { createUserSchema } from "../create-user/createUserSchema";
 
-export const updateUserSchema = z
-  .object({
-    name: nameSchema,
-    username: usernameSchema,
-    email: emailSchema,
-    password: passwordSchema,
-    isAuth: z.boolean(),
-    role: roleSchema,
-    img: imgSchema,
-  })
+export const updateUserSchema = createUserSchema
   .partial()
   .strict()
   .refine((data) => Object.keys(data).length > 0, {

@@ -73,7 +73,7 @@ Están dividas por modulos:
 
 ### USER
 
-Este modulo contine información sencible, por lo que algunas rutas estan protegidas.
+Las rutas **boss** están protegidas.
 
 #### client
 
@@ -108,24 +108,35 @@ ocupa que envies un token valido para poder enviar un nuevo token
 
 #### boss
 
-Debe enviar el token por **headers** con la key **Authorization** para las rutas boss, además debe tener role BOSS
-
-- GET http://localhost:3000/user/boss/get
-
-```
-
-```
+Debe enviar el token por **headers** con la key **Authorization**, además debe tener role BOSS
 
 - POST http://localhost:3000/user/boss/create
 
+name: 1 a 50 carácteres, sin carácteres especiales, sin números, no empezar con espacio, no finalizar con espacio, sin mayúsculas.
+
+username: 3 y 15 caráteres, sin carácteres especiales, no empezar ni terminar con espacio.
+
+role: solo "CLIENT" o "BOSS"
+
+password: 6 a 127 carácteres.
+
+img: cadena de texto en formato url.
+
 ```
 {
-  "name": "fake",
+  "name": "fake name",
+  "username": "fakeusername",
   "email": "fake@gmail.com",
-  "password": "123456",
+  "password": "123",
   "isAuth": true,
   "role": "CLIENT"
 }
+```
+
+- GET http://localhost:3000/user/boss/read
+
+```
+
 ```
 
 - POST http://localhost:3000/user/boss/modify/:id
