@@ -24,11 +24,11 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  follower  Follow[] @relation("follower")
+  followers Follow[] @relation("followers")
   following Follow[] @relation("following")
 
-  issuer   Message[] @relation("issuer")
-  receptor Message[] @relation("receptor")
+  issuers   Message[] @relation("issuers")
+  receptors Message[] @relation("receptors")
 }
 
 model Follow {
@@ -36,7 +36,7 @@ model Follow {
   followingId String
   createdAt   DateTime @default(now())
 
-  follower  User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followers User @relation("followers", fields: [followerId], references: [id], onDelete: Cascade)
   following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
 
   @@id([followerId, followingId])
@@ -48,8 +48,8 @@ model Message {
   createdAt  DateTime @default(now())
   text       String
 
-  issuer   User @relation("issuer", fields: [issuerId], references: [id], onDelete: Cascade)
-  receptor User @relation("receptor", fields: [receptorId], references: [id], onDelete: Cascade)
+  issuers   User @relation("issuers", fields: [issuerId], references: [id], onDelete: Cascade)
+  receptors User @relation("receptors", fields: [receptorId], references: [id], onDelete: Cascade)
 
   @@id([issuerId, receptorId, createdAt])
 }
