@@ -1,6 +1,10 @@
+import { z } from "zod";
 import { createUserService } from "../../../boss/create-user/createUserService";
-import { ParamsToRegisterUser } from "../signup/signupService";
+import { signupSchema } from "../signup/signupSchema";
 
-export const verifySignupService = async (params: ParamsToRegisterUser) => {
-  return await createUserService({ ...params, isAuth: true });
+export const verifySignupService = async (params: Param) => {
+  const { name, username, email, password } = params;
+  return await createUserService({ name, username, email, password });
 };
+
+type Param = z.infer<typeof signupSchema>;

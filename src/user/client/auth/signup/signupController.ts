@@ -6,7 +6,7 @@ export const signupController: Controller = async (req, res, next) => {
     await signupService(req.body);
     res
       .status(201)
-      .json({ msg: "We have sent an email with a confirmation link" });
+      .json({ msg: "We have send an email with a confirmation link" });
   } catch (error) {
     next(error);
   }

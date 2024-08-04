@@ -12,7 +12,7 @@ export const createUserSchema = z
     username: usernameSchema,
     email: emailSchema,
     password: passwordSchema,
-    role: roleSchema,
-    img: imgSchema,
+    role: roleSchema.optional(),
+    img: imgSchema.optional(),
   })
   .strict();

@@ -39,6 +39,8 @@ NODEMAILER_GMAIL="email@gmail.com"
 NODEMAILER_GMAIL_APP_PASSWORD="**** **** **** ****"
 
 SECRET_JWT="***"
+
+API_URL="http://localhost:3000"
 ```
 
 ## Scripts
@@ -75,12 +77,13 @@ npm run dev
 
 - POST http://localhost:3000/user/client/auth/signup
 
-Debe proporcionar un correo real dado que se enviará un mensaje de confirmación al mismo, solo se creará el registro cuando haya confirmado. Su contraseña se guardará encryptada.
+Debe proporcionar un correo real dado que se enviará un mensaje de confirmación al mismo, solo se creará el registro si confirma antes de transcurrir 30min, de lo contrario simplemente repita el registro. Su contraseña se guardará encryptada.
 
 ```
 {
-  "name": "edarcode",
-  "email": "correo@gmail.com",
+  "name": "edwin ortiz",
+  "username": "edarcode",
+  "email": "email@gmail.com",
   "password": "******"
 }
 ```

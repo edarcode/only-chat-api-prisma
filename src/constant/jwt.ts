@@ -1,6 +1,7 @@
 export const JWT = {
   secret: process.env.SECRET_JWT,
   expiresIn: "1w",
+  expiresInSignup: "30m",
 };
 
 //  1s segundos
