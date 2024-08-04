@@ -8,9 +8,6 @@ export const usernameSchema = z
   .refine((name) => !REGEX.specialCharacters.test(name), {
     message: "No special characters",
   })
-  .refine((name) => !REGEX.startWithSpace.test(name), {
-    message: "No start with space",
-  })
-  .refine((name) => !REGEX.endWithSpace.test(name), {
-    message: "No end with space",
+  .refine((name) => !REGEX.space.test(name), {
+    message: "No spaces",
   });

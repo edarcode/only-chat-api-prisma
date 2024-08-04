@@ -4,4 +4,5 @@ export const REGEX = {
   startWithSpace: /^\s/,
   endWithSpace: /\s$/,
   mayus: /[A-Z]/,
+  space: /\s/,
 };

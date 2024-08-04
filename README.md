@@ -73,8 +73,6 @@ Están dividas por modulos:
 
 ### USER
 
-Las rutas **boss** están protegidas.
-
 #### client
 
 - POST http://localhost:3000/user/client/auth/signup
@@ -108,38 +106,41 @@ ocupa que envies un token valido para poder enviar un nuevo token
 
 #### boss
 
-Debe enviar el token por **headers** con la key **Authorization**, además debe tener role BOSS
+Las rutas **boss** están protegidas. Debe enviar el token por **headers** con la key **Authorization**, además debe tener role BOSS
 
 - POST http://localhost:3000/user/boss/create
 
-name: 1 a 50 carácteres, sin carácteres especiales, sin números, no empezar con espacio, no finalizar con espacio, sin mayúsculas.
+  - **name:** 1 a 50 carácteres, sin carácteres especiales, sin números, no empezar con espacio, no finalizar con espacio, sin mayúsculas.
 
-username: 3 y 15 caráteres, sin carácteres especiales, no empezar ni terminar con espacio.
+  - **username:** 3 y 15 caráteres, sin carácteres especiales, no empezar ni terminar con espacio.
 
-role: solo "CLIENT" o "BOSS"
+  - **role:** solo "CLIENT" o "BOSS".
 
-password: 6 a 127 carácteres.
+  - **password:** 6 a 127 carácteres.
 
-img: cadena de texto en formato url.
+  - **img:** cadena de texto en formato url, opcional.
 
 ```
+BODY
 {
   "name": "fake name",
   "username": "fakeusername",
   "email": "fake@gmail.com",
-  "password": "123",
+  "password": "123456",
   "isAuth": true,
-  "role": "CLIENT"
+  "role": "CLIENT",
+  "img": "https:www.img.com"
 }
 ```
 
 - GET http://localhost:3000/user/boss/read
 
 ```
+QUERY
 
 ```
 
-- POST http://localhost:3000/user/boss/modify/:id
+- POST http://localhost:3000/user/boss/update/:id
 
 ```
 {
