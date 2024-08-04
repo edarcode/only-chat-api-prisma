@@ -135,10 +135,14 @@ BODY
 
 - GET http://localhost:3000/user/boss/read
 
-```
-QUERY
+  posibles filtros (QUERY):
 
-```
+  - **name:**
+  - **username:**
+  - **email:**
+  - **role:**
+  - **page:**
+  - **take:** cantidad de resultados por página deseado
 
 - POST http://localhost:3000/user/boss/update/:id
 

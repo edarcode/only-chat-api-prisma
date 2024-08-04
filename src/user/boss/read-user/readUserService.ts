@@ -1,10 +1,13 @@
 import { Prisma } from "@prisma/client";
 import { connDb } from "../../../db/connDb";
+import { z } from "zod";
+import { readUserSchema } from "./readUserSchema";
 
 export const readUserService = async (params: Params = {}) => {
-  const { page = 1, take = 6, name } = params;
+  const { page = 1, take = 6, name, ...extraParams } = params;
 
   const where: Where = {
+    ...extraParams,
     name: { contains: name, mode: "insensitive" },
   };
 
@@ -21,10 +24,6 @@ export const readUserService = async (params: Params = {}) => {
   return { page, totalPages, users };
 };
 
-export type Params = {
-  page?: number;
-  take?: number;
-  name?: string;
-};
+export type Params = z.infer<typeof readUserSchema>;
 
 type Where = Prisma.UserWhereInput;
