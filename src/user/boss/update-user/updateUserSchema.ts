@@ -4,5 +4,5 @@ export const updateUserSchema = createUserSchema
   .partial()
   .strict()
   .refine((data) => Object.keys(data).length > 0, {
-    message: "Empty DTO",
+    message: "No empty DTO",
   });

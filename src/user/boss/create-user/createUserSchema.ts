@@ -12,7 +12,6 @@ export const createUserSchema = z
     username: usernameSchema,
     email: emailSchema,
     password: passwordSchema,
-    isAuth: z.boolean(),
     role: roleSchema,
     img: imgSchema,
   })

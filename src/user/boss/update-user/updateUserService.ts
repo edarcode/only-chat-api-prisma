@@ -1,8 +1,9 @@
-import { Role } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { BCRYPT } from "../../../constant/bcrypt";
 import { connDb } from "../../../db/connDb";
 import { Uuid } from "../../../types";
+import { z } from "zod";
+import { updateUserSchema } from "./updateUserSchema";
 
 export const updateUserService = async (id: Uuid, params: Params) => {
   const paramsToUpdateUser = { ...params };
@@ -18,10 +19,4 @@ export const updateUserService = async (id: Uuid, params: Params) => {
   });
 };
 
-type Params = {
-  name?: string;
-  email?: string;
-  password?: string;
-  isAuth?: boolean;
-  role?: Role;
-};
+type Params = z.infer<typeof updateUserSchema>;

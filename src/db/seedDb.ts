@@ -21,7 +21,6 @@ async function seedDb() {
     email: process.env.BOSS_EMAIL,
     password: process.env.BOSS_PASSWORD,
     role: Role.BOSS,
-    isAuth: true,
   };
 
   const schemaBoss = z.object({
@@ -29,7 +28,6 @@ async function seedDb() {
     username: z.string(),
     email: z.string(),
     password: z.string(),
-    isAuth: z.boolean(),
     role: z.enum([Role.BOSS]),
   });
 

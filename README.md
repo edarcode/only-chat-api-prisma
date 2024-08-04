@@ -65,13 +65,11 @@ npm run dev
 
 ## Rutas
 
-Están dividas por modulos:
-
-### WELCOME
+### módulo welcome
 
 - http://localhost:3000
 
-### USER
+### módulo user
 
 #### client
 
@@ -127,7 +125,6 @@ BODY
   "username": "fakeusername",
   "email": "fake@gmail.com",
   "password": "123456",
-  "isAuth": true,
   "role": "CLIENT",
   "img": "https:www.img.com"
 }
@@ -147,17 +144,15 @@ BODY
 - POST http://localhost:3000/user/boss/update/:id
 
 ```
+BODY
 {
-  "name": "fake two",
+  "name": "fake name two",
+  "username": "fakeusername2",
   "email": "fake2@gmail.com",
-  "password": "edar123",
-  "isAuth": false,
-  "role": "ADMIN"
+  "password": "1234567",
+  "role": "CLIENT",
+  "img": "https:www.img.com"
 }
 ```
 
 - POST http://localhost:3000/user/boss/delete/:id
-
-```
-
-```
