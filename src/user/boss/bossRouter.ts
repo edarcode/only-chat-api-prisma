@@ -6,6 +6,7 @@ import { updateUserRouter } from "./update-user/updateUserRouter";
 
 export const bossRouter = Router();
 
+// bossRouter.use(verifyToken, verifyTokenRole(Role.BOSS)); todo
 bossRouter.use("/create", createUserRouter);
 bossRouter.use("/read", readUserRouter);
 bossRouter.use("/update", updateUserRouter);
