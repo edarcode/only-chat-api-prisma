@@ -3,18 +3,25 @@ import jwt from "jsonwebtoken";
 import { connDb } from "../../../../db/connDb";
 import { JWT } from "../../../../constant/jwt";
 import { EdarErr } from "../../../../error/EdarErr";
+import { z } from "zod";
+import { loginSchema } from "./loginSchema";
 
 export const loginService = async (params: Params) => {
-  const { email } = params;
+  const { email, password } = params;
 
   const user = await connDb.user.findUnique({ where: { email } });
   if (!user) throw new EdarErr(401, "Invalid login");
 
-  const isLogged = await bcrypt.compare(params.password, user.password);
+  const isLogged = await bcrypt.compare(password, user.password);
   if (!isLogged) throw new EdarErr(401, "Invalid login");
 
   const token = jwt.sign(
-    { id: user.id, role: user.role, name: user.name, email: user.email },
+    {
+      id: user.id,
+      role: user.role,
+      username: user.username,
+      img: user.img,
+    },
     JWT.secret as string,
     {
       expiresIn: JWT.expiresIn,
@@ -24,7 +31,4 @@ export const loginService = async (params: Params) => {
   return token;
 };
 
-type Params = {
-  email: string;
-  password: string;
-};
+type Params = z.infer<typeof loginSchema>;

@@ -87,7 +87,10 @@ Debe proporcionar un correo real dado que se enviará un mensaje de confirmació
 
 - POST http://localhost:3000/user/client/auth/login
 
+Si el login es exitoso se enviará un token valido por 1 semana, y dentro del mismo información relacionada al usuario como: id, role, username, img.
+
 ```
+BODY
 {
   "email": "correo@gmail.com",
   "password": "******"
