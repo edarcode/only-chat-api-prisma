@@ -99,11 +99,7 @@ BODY
 
 - POST http://localhost:3000/user/client/auth/refresh-token
 
-ocupa que envies un token valido para poder enviar un nuevo token
-
-```
-
-```
+Debe enviar el token por **headers** con la key **Authorization**. Valida el token y refresca si es valido el mismo.
 
 #### boss
 
