@@ -17,14 +17,16 @@ seedDb()
 async function seedDb() {
   const boss = {
     name: process.env.BOSS_NAME,
+    username: process.env.BOSS_USERNAME,
     email: process.env.BOSS_EMAIL,
     password: process.env.BOSS_PASSWORD,
-    isAuth: true,
     role: Role.BOSS,
+    isAuth: true,
   };
 
   const schemaBoss = z.object({
     name: z.string(),
+    username: z.string(),
     email: z.string(),
     password: z.string(),
     isAuth: z.boolean(),

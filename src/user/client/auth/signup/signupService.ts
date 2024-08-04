@@ -18,6 +18,7 @@ export const signupService = async (params: Params) => {
 
 type Params = {
   name: string;
+  username: string;
   email: string;
   password: string;
 };
