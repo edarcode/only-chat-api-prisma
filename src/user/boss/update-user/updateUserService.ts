@@ -4,12 +4,11 @@ import { BCRYPT } from "../../../constant/bcrypt";
 import { connDb } from "../../../db/connDb";
 import { Uuid } from "../../../types";
 
-export const modifyUserService = async (id: Uuid, params: Params) => {
-  const { name, email, password, isAuth, role } = params;
-  const paramsToUpdateUser = { name, email, password, isAuth, role };
+export const updateUserService = async (id: Uuid, params: Params) => {
+  const paramsToUpdateUser = { ...params };
 
-  if (password) {
-    const passHashed = await bcrypt.hash(password, BCRYPT.salt);
+  if (params.password) {
+    const passHashed = await bcrypt.hash(params.password, BCRYPT.salt);
     paramsToUpdateUser.password = passHashed;
   }
 

@@ -4,6 +4,7 @@ import { nameSchema } from "../../../zod-schema/nameSchema";
 import { passwordSchema } from "../../../zod-schema/passwordSchema";
 import { roleSchema } from "../../../zod-schema/roleSchema";
 import { usernameSchema } from "../../../zod-schema/usernameSchema";
+import { imgSchema } from "../../../zod-schema/imgSchema";
 
 export const createUserSchema = z
   .object({
@@ -13,5 +14,6 @@ export const createUserSchema = z
     password: passwordSchema,
     isAuth: z.boolean(),
     role: roleSchema,
+    img: imgSchema,
   })
   .strict();
