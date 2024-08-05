@@ -104,7 +104,7 @@ BODY
 
 Debe enviar el token por **headers** con la key **Authorization**. Valida el token y refresca si es valido el mismo.
 
-- PUT http://localhost:3000/user/client/update
+- PUT http://localhost:3000/user/client/edit
 
 Actualiza el usuario asociado al token
 
@@ -118,7 +118,7 @@ BODY
 }
 ```
 
-- GET http://localhost:3000/user/client/read
+- GET http://localhost:3000/user/client/search
 
 Lee usuarios asociados al query **username** obligatorio
 

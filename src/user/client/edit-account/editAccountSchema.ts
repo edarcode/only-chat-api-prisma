@@ -5,7 +5,7 @@ import { nameSchema } from "../../../zod-schema/nameSchema";
 import { passwordSchema } from "../../../zod-schema/passwordSchema";
 import { usernameSchema } from "../../../zod-schema/usernameSchema";
 
-export const updateUserSchema = z
+export const editAccountSchema = z
   .object({
     name: nameSchema,
     username: usernameSchema,

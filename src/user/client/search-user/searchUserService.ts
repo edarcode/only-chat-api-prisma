@@ -1,9 +1,9 @@
 import { Prisma } from "@prisma/client";
 import { connDb } from "../../../db/connDb";
 import { z } from "zod";
-import { readUserSchema } from "./readUserSchema";
+import { searchUserSchema } from "./searchUserSchema";
 
-export const readUserService = async (params: Params) => {
+export const searchUserService = async (params: Params) => {
   const { page = 1, take = 6, username } = params;
 
   const where: Where = { username: { contains: username } };
@@ -26,5 +26,5 @@ export const readUserService = async (params: Params) => {
   return { page, totalPages, users };
 };
 
-export type Params = z.infer<typeof readUserSchema>;
+export type Params = z.infer<typeof searchUserSchema>;
 type Where = Prisma.UserWhereInput;

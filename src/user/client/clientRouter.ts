@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { updateUserRouter } from "./update-user/updateUserRouter";
-import { readUserRouter } from "./read-user/readUserRouter";
+import { editAccountRouter } from "./edit-account/editAccountRouter";
+import { searchUserRouter } from "./search-user/searchUserRouter";
 import { deleteAccountRouter } from "./delete-account/deleteAccountRouter";
 
 export const clientRouter = Router();
 
-clientRouter.use("/read", readUserRouter);
-clientRouter.use("/update", updateUserRouter);
+clientRouter.use("/search", searchUserRouter);
+clientRouter.use("/edit", editAccountRouter);
 clientRouter.use("/delete", deleteAccountRouter);

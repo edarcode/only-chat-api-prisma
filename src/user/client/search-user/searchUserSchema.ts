@@ -3,7 +3,7 @@ import { pageSchema } from "../../../zod-schema/pageSchema";
 import { takeSchema } from "../../../zod-schema/takeSchema";
 import { usernameSchema } from "../../../zod-schema/usernameSchema";
 
-export const readUserSchema = z
+export const searchUserSchema = z
   .object({
     page: pageSchema.optional(),
     take: takeSchema.optional(),
