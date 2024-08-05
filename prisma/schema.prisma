@@ -35,8 +35,8 @@ model Follow {
   followingId String // usuario que está siendo seguido
   createdAt   DateTime @default(now())
 
-  followers User @relation("followers", fields: [followerId], references: [id], onDelete: Cascade)
-  following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+  followers User @relation("followers", fields: [followingId], references: [id], onDelete: Cascade) // invertí los id fields
+  following User @relation("following", fields: [followerId], references: [id], onDelete: Cascade)
 
   @@id([followerId, followingId])
 }
@@ -47,8 +47,8 @@ model Message {
   createdAt  DateTime @default(now())
   text       String
 
-  issuers   User @relation("issuers", fields: [issuerId], references: [id], onDelete: Cascade)
-  receptors User @relation("receptors", fields: [receptorId], references: [id], onDelete: Cascade)
+  issuers   User @relation("issuers", fields: [receptorId], references: [id], onDelete: Cascade) // invertí los id fields
+  receptors User @relation("receptors", fields: [issuerId], references: [id], onDelete: Cascade)
 
   @@id([issuerId, receptorId, createdAt])
 }
