@@ -23,16 +23,16 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  followers Follow[] @relation("followers")
-  following Follow[] @relation("following")
+  followers Follow[] @relation("followers") // Representa una lista de usuarios que siguen a este usuario
+  following Follow[] @relation("following") // Representa una lista de usuarios que este usuario sigue.
 
   issuers   Message[] @relation("issuers")
   receptors Message[] @relation("receptors")
 }
 
 model Follow {
-  followerId  String
-  followingId String
+  followerId  String // usuario que sigue a otro usuario
+  followingId String // usuario que está siendo seguido
   createdAt   DateTime @default(now())
 
   followers User @relation("followers", fields: [followerId], references: [id], onDelete: Cascade)

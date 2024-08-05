@@ -23,7 +23,7 @@ async function seedDb() {
     role: Role.BOSS,
   };
 
-  const schemaBoss = z.object({
+  const bossSchema = z.object({
     name: z.string(),
     username: z.string(),
     email: z.string(),
@@ -31,7 +31,7 @@ async function seedDb() {
     role: z.enum([Role.BOSS]),
   });
 
-  const { success, data } = schemaBoss.safeParse(boss);
+  const { success, data } = bossSchema.safeParse(boss);
 
   if (!success) {
     console.log(
@@ -46,4 +46,16 @@ async function seedDb() {
   await connDb.user.create({
     data: { ...data, password: passHashed },
   });
+
+  // ___________________________________________________________________________
+
+  const firstClient = {
+    name: "loraine",
+    username: "lora",
+    email: "lora@gmail.com",
+    password: await bcrypt.hash("123456", BCRYPT.salt),
+    role: Role.CLIENT,
+  };
+
+  await connDb.user.create({ data: firstClient });
 }
