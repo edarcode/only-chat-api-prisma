@@ -1,4 +1,4 @@
-import { Controller } from "../../../../types";
+import { Controller } from "../../../types";
 import { refreshTokenService } from "./refreshTokenService";
 
 export const refreshTokenController: Controller = async (req, res, next) => {

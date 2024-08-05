@@ -1,5 +1,5 @@
 import { Controller } from "../../../types";
-import { TokenInfo } from "../auth/login/loginService";
+import { TokenInfo } from "../../auth/login/loginService";
 import { updateUserService } from "./updateUserService";
 
 export const updateUserController: Controller = async (req, res, next) => {

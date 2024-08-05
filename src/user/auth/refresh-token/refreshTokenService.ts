@@ -1,5 +1,5 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { JWT } from "../../../../constant/jwt";
+import { JWT } from "../../../constant/jwt";
 
 export const refreshTokenService = (token: string) => {
   const tokenInfo = jwt.decode(token) as JwtPayload;

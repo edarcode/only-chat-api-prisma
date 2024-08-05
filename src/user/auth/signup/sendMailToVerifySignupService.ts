@@ -1,4 +1,4 @@
-import { transporter } from "../../../../service/transporter";
+import { transporter } from "../../../service/transporter";
 
 export const sendMailToVerifySignupService = async (
   to: string,

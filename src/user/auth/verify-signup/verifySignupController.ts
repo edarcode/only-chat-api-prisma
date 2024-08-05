@@ -1,4 +1,4 @@
-import { Controller } from "../../../../types";
+import { Controller } from "../../../types";
 import { verifySignupService } from "./verifySignupService";
 
 export const verifySignupController: Controller = async (_req, res, next) => {

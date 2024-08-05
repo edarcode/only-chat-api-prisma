@@ -1,4 +1,4 @@
-import { Controller } from "../../../../types";
+import { Controller } from "../../../types";
 import { signupService } from "./signupService";
 
 export const signupController: Controller = async (req, res, next) => {

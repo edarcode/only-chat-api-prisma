@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import { JWT } from "../../../../constant/jwt";
-import { connDb } from "../../../../db/connDb";
-import { EdarErr } from "../../../../error/EdarErr";
+import { JWT } from "../../../constant/jwt";
+import { connDb } from "../../../db/connDb";
+import { EdarErr } from "../../../error/EdarErr";
 import { sendMailToVerifySignupService } from "./sendMailToVerifySignupService";
 import { z } from "zod";
 import { signupSchema } from "./signupSchema";

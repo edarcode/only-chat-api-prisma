@@ -1,4 +1,4 @@
-import { Controller } from "../../../../types";
+import { Controller } from "../../../types";
 import { loginService } from "./loginService";
 
 export const loginController: Controller = async (req, res, next) => {

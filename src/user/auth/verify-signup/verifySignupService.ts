@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createUserService } from "../../../boss/create-user/createUserService";
+import { createUserService } from "../../boss/create-user/createUserService";
 import { signupSchema } from "../signup/signupSchema";
 
 export const verifySignupService = async (params: Param) => {

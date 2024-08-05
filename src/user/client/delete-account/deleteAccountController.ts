@@ -1,5 +1,5 @@
 import { Controller } from "../../../types";
-import { TokenInfo } from "../auth/login/loginService";
+import { TokenInfo } from "../../auth/login/loginService";
 import { deleteAccountService } from "./deleteAccountService";
 
 export const deleteAccountController: Controller = async (_req, res, next) => {

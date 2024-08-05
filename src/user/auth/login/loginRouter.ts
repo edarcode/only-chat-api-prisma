@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { verifyBody } from "../../../../middleware/verifyBody";
 import { loginController } from "./loginController";
 import { loginSchema } from "./loginSchema";
+import { verifyBody } from "../../../middleware/verifyBody";
 
 export const loginRouter = Router();
 
