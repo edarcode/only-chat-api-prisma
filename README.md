@@ -108,7 +108,7 @@ Debe enviar el token por **headers** con la key **Authorization**. Valida el tok
 
 Actualiza el usuario asociado al token
 
-````
+```
 BODY
 {
   "name": "nuevo nombre",
@@ -116,7 +116,11 @@ BODY
   "email": "newemail@gmail.com",
   "password": "******"
 }
-~~~
+```
+
+- GET http://localhost:3000/user/client/read
+
+Lee usuarios asociados al query **username**
 
 #### boss
 
@@ -135,15 +139,17 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
   - **img:** cadena de texto en formato url, opcional.
 
 ```
+
 BODY
 {
-  "name": "fake name",
-  "username": "fakeusername",
-  "email": "fake@gmail.com",
-  "password": "123456",
-  "role": "CLIENT",
-  "img": "https:www.img.com"
+"name": "fake name",
+"username": "fakeusername",
+"email": "fake@gmail.com",
+"password": "123456",
+"role": "CLIENT",
+"img": "https:www.img.com"
 }
+
 ```
 
 - GET http://localhost:3000/user/boss/read
@@ -160,16 +166,21 @@ BODY
 - POST http://localhost:3000/user/boss/update/:id
 
 ```
+
 BODY
 {
-  "name": "fake name two",
-  "username": "fakeusername2",
-  "email": "fake2@gmail.com",
-  "password": "1234567",
-  "role": "CLIENT",
-  "img": "https:www.img.com"
+"name": "fake name two",
+"username": "fakeusername2",
+"email": "fake2@gmail.com",
+"password": "1234567",
+"role": "CLIENT",
+"img": "https:www.img.com"
 }
+
 ```
 
 - POST http://localhost:3000/user/boss/delete/:id
-````
+
+```
+
+```
