@@ -3,10 +3,13 @@ import { createUserRouter } from "./create-user/createUserRouter";
 import { deleteUserRouter } from "./delete-user/deleteUserRouter";
 import { readUserRouter } from "./read-user/readUserRouter";
 import { updateUserRouter } from "./update-user/updateUserRouter";
+import { verifyToken } from "../../middleware/verifyToken";
+import { verifyTokenRole } from "../../middleware/verifyTokenRole";
+import { Role } from "@prisma/client";
 
 export const bossRouter = Router();
 
-// bossRouter.use(verifyToken, verifyTokenRole(Role.BOSS)); todo
+bossRouter.use(verifyToken, verifyTokenRole(Role.BOSS));
 bossRouter.use("/create", createUserRouter);
 bossRouter.use("/read", readUserRouter);
 bossRouter.use("/update", updateUserRouter);

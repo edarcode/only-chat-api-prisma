@@ -5,6 +5,8 @@ import { JWT } from "../../../../constant/jwt";
 import { EdarErr } from "../../../../error/EdarErr";
 import { z } from "zod";
 import { loginSchema } from "./loginSchema";
+import { Uuid } from "../../../../types";
+import { Role } from "@prisma/client";
 
 export const loginService = async (params: Params) => {
   const { email, password } = params;
@@ -32,3 +34,4 @@ export const loginService = async (params: Params) => {
 };
 
 type Params = z.infer<typeof loginSchema>;
+export type TokenInfo = { id: Uuid; role: Role; username: string; img: string };
