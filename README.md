@@ -104,6 +104,20 @@ BODY
 
 Debe enviar el token por **headers** con la key **Authorization**. Valida el token y refresca si es valido el mismo.
 
+- PUT http://localhost:3000/user/client/update
+
+Actualiza el usuario asociado al token
+
+````
+BODY
+{
+  "name": "nuevo nombre",
+  "username": "nuevo username",
+  "email": "newemail@gmail.com",
+  "password": "******"
+}
+~~~
+
 #### boss
 
 Las rutas **boss** están protegidas. Debe enviar el token por **headers** con la key **Authorization**, además debe tener role BOSS
@@ -158,3 +172,4 @@ BODY
 ```
 
 - POST http://localhost:3000/user/boss/delete/:id
+````

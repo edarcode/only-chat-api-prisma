@@ -14,4 +14,7 @@ export const updateUserSchema = z
     img: imgSchema.optional(),
   })
   .strict()
-  .partial();
+  .partial()
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "No empty DTO",
+  });

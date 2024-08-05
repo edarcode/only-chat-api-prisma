@@ -1,14 +1,10 @@
 import { z } from "zod";
 import { updateUserSchema } from "./updateUserSchema";
-import { connDb } from "../../../db/connDb";
 import { Uuid } from "../../../types";
+import { updateUserService as updateUserServic } from "../../boss/update-user/updateUserService";
 
 export const updateUserService = async (id: Uuid, params: Params) => {
-  await connDb.user.update({
-    where: { id },
-    data: { ...params },
-  });
-  return params;
+  await updateUserServic(id, params);
 };
 
 type Params = z.infer<typeof updateUserSchema>;

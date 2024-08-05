@@ -32,5 +32,4 @@ export const readUserService = async (params: Params = {}) => {
 };
 
 export type Params = z.infer<typeof readUserSchema>;
-
 type Where = Prisma.UserWhereInput;
