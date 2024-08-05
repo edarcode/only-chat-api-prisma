@@ -17,6 +17,13 @@ export const readUserService = async (params: Params = {}) => {
     skip: (page - 1) * take,
     take,
     where,
+    select: {
+      id: true,
+      username: true,
+      img: true,
+      createdAt: true,
+      _count: { select: { followers: true, following: true } },
+    },
   });
 
   const totalPages = Math.ceil(totalUsers / take) || 1;
