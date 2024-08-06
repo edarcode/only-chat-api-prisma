@@ -2,9 +2,10 @@ import { ZodSchema } from "zod";
 import { Middleware } from "../types";
 
 export const verifyBody = (schema: ZodSchema): Middleware => {
-  return (req, _res, next) => {
+  return (req, res, next) => {
     try {
-      schema.parse(req.body);
+      const body: ZodSchema = schema.parse(req.body);
+      res.locals = { ...res.locals, body };
       next();
     } catch (error) {
       next(error);
