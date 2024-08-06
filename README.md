@@ -191,8 +191,58 @@ BODY
 
 - POST http://localhost:3000/follow/client/follow-to/:id
 
-Debe enviar **followerId** (persona que seguirá a alguien) que tomará del token y **followingId** (persona que será seguida) que tomará del **:id** enviado por params.
+  Esta ruta estable un seguimiento de una persona **A** a otra **B**. Se ocupan 2 cosas:
+
+  - **followerId:** Persona que seguirá a alguien, el cúal se tomará del id del token.
+
+  - **followingId:** Persona que será seguida, el cúal debe enviar por params **:id**.
 
 - POST http://localhost:3000/follow/client/unfollow-to/:id
 
-Debe enviar **followerId** (persona que dejará de seguir a alguien) que tomará del token y **followingId** (persona que dejarán de seguir) que tomará del **:id** enviado por params.
+  Esta ruta elimina el seguimiento de una persona **A** a otra **B**. Se ocupan 2 cosas:
+
+  - **followerId:** Persona que dejará de seguir a alguien, el cúal se tomará del id del token.
+
+  - **followingId:** Persona que dejarán de seguir, el cúal debe enviar por params **:id**.
+
+### Módulo message
+
+#### client
+
+- POST http://localhost:3000/msg/client/send-msg/:id
+
+  Esta ruta guardará un mensaje enviado de una persona **A** a otra **B**. Se ocupan 3 cosas:
+
+  - **issuerId:** Persona que enviará un msg, el cúal se tomará del **id** del token.
+
+  - **receptorId:** Persona que recibirá un msg.
+
+  - **text:** Cuerpo del mensaje
+
+  El **receptorId y text** debe enviarlo por body:
+
+  ```
+  {
+    "text": "Hola, ¿cómo estás?"
+  }
+  ```
+
+- POST http://localhost:3000/msg/client/remove-msg/:id
+
+  Esta ruta eliminará un mensaje enviado de una persona **A** a otra **B**. Se ocupan 3 cosas:
+
+  - **issuerId:** Persona que envió un msg, el cúal se tomará del **id** del token.
+
+  - **receptorId:** Persona que recibió el msg.
+
+  - **createdAt:** **Date** exacto en el que se guardo el msg en la **db**.
+
+  El **receptorId y createdAt** debe enviarlo por body:
+
+  ```
+  BODY
+  {
+    "receptorId" : "2ba0fdf2-e11c-4894-9832-9afd362606f8",
+    "createdAt" : "2024-08-06 19:22:03.98Z"
+  }
+  ```
