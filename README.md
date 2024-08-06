@@ -49,21 +49,21 @@ En el package.json ya existen scripts para resetear, migrar, llenar la db con da
 
 - instalar dependencias:
 
-```
-npm i
-```
+  ```
+  npm i
+  ```
 
 - rellenar la db:
 
-```
-npm run dbnew
-```
+  ```
+  npm run dbnew
+  ```
 
 - luego
 
-```
-npm run dev
-```
+  ```
+  npm run dev
+  ```
 
 ## Rutas
 
@@ -77,54 +77,54 @@ npm run dev
 
 - POST http://localhost:3000/user/client/auth/signup
 
-Debe proporcionar un correo real dado que se enviará un mensaje de confirmación al mismo, solo se creará el registro si confirma antes de transcurrir 30min, de lo contrario simplemente repita el registro. Su contraseña se guardará encryptada.
+  Debe proporcionar un correo real dado que se enviará un mensaje de confirmación al mismo, solo se creará el registro si confirma antes de transcurrir 30min, de lo contrario simplemente repita el registro. Su contraseña se guardará encryptada.
 
-```
-{
-  "name": "edwin ortiz",
-  "username": "edarcode",
-  "email": "email@gmail.com",
-  "password": "******"
-}
-```
+  ```
+  {
+    "name": "edwin ortiz",
+    "username": "edarcode",
+    "email": "email@gmail.com",
+    "password": "******"
+  }
+  ```
 
 - POST http://localhost:3000/user/client/auth/login
 
-Si el login es exitoso se enviará un token valido por 1 semana, y dentro del mismo información relacionada al usuario como: id, role, username, img.
+  Si el login es exitoso se enviará un token valido por 1 semana, y dentro del mismo información relacionada al usuario como: id, role, username, img.
 
-```
-BODY
-{
-  "email": "correo@gmail.com",
-  "password": "******"
-}
-```
+  ```
+  BODY
+  {
+    "email": "correo@gmail.com",
+    "password": "******"
+  }
+  ```
 
 - POST http://localhost:3000/user/client/auth/refresh-token
 
-Debe enviar el token por **headers** con la key **Authorization**. Valida el token y refresca si es valido el mismo.
+  Debe enviar el token por **headers** con la key **Authorization**. Valida el token y refresca si es valido el mismo.
 
 - PUT http://localhost:3000/user/client/edit
 
-Actualiza el usuario asociado al token
+  Actualiza el usuario asociado al token
 
-```
-BODY
-{
-  "name": "nuevo nombre",
-  "username": "nuevo username",
-  "email": "newemail@gmail.com",
-  "password": "******"
-}
-```
+  ```
+  BODY
+  {
+    "name": "nuevo nombre",
+    "username": "nuevo username",
+    "email": "newemail@gmail.com",
+    "password": "******"
+  }
+  ```
 
 - GET http://localhost:3000/user/client/search
 
-Lee usuarios asociados al query **username** obligatorio
+  Lee usuarios asociados al query **username** obligatorio
 
 - DELETE http://localhost:3000/user/client/delete
 
-Elimina el usuario asociado al token
+  Elimina el usuario asociado al token
 
 #### boss
 
@@ -142,43 +142,42 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
 
   - **img:** cadena de texto en formato url, opcional.
 
-```
-BODY
-{
-  "name": "fake name",
-  "username": "fakeusername",
-  "email": "fake@gmail.com",
-  "password": "123456",
-  "role": "CLIENT",
-  "img": "https:www.img.com"
-}
-
-```
+  ```
+  BODY
+  {
+    "name": "fake name",
+    "username": "fakeusername",
+    "email": "fake@gmail.com",
+    "password": "123456",
+    "role": "CLIENT",
+    "img": "https:www.img.com"
+  }
+  ```
 
 - GET http://localhost:3000/user/boss/read
 
-  posibles filtros (QUERY):
+  Posibles filtros (QUERY):
 
   - **name:**
   - **username:**
   - **email:**
   - **role:**
   - **page:**
-  - **take:** cantidad de resultados por página deseado
+  - **take:** Cantidad de resultados por página deseado
 
 - POST http://localhost:3000/user/boss/update/:id
 
-```
-BODY
-{
-  "name": "fake name two",
-  "username": "fakeusername2",
-  "email": "fake2@gmail.com",
-  "password": "1234567",
-  "role": "CLIENT",
-  "img": "https:www.img.com"
-}
-```
+  ```
+  BODY
+  {
+    "name": "fake name two",
+    "username": "fakeusername2",
+    "email": "fake2@gmail.com",
+    "password": "1234567",
+    "role": "CLIENT",
+    "img": "https:www.img.com"
+  }
+  ```
 
 - POST http://localhost:3000/user/boss/delete/:id
 
@@ -219,6 +218,7 @@ BODY
   El **receptorId y text** debe enviarlo por body:
 
   ```
+  BODY
   {
     "text": "Hola, ¿cómo estás?"
   }
