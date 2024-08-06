@@ -143,7 +143,6 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
   - **img:** cadena de texto en formato url, opcional.
 
 ```
-
 BODY
 {
   "name": "fake name",
@@ -170,7 +169,6 @@ BODY
 - POST http://localhost:3000/user/boss/update/:id
 
 ```
-
 BODY
 {
   "name": "fake name two",
@@ -180,7 +178,6 @@ BODY
   "role": "CLIENT",
   "img": "https:www.img.com"
 }
-
 ```
 
 - POST http://localhost:3000/user/boss/delete/:id
@@ -227,7 +224,7 @@ BODY
   }
   ```
 
-- POST http://localhost:3000/msg/client/remove-msg/:id
+- POST http://localhost:3000/msg/client/remove-msg
 
   Esta ruta eliminará un mensaje enviado de una persona **A** a otra **B**. Se ocupan 3 cosas:
 
