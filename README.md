@@ -184,3 +184,13 @@ BODY
 ```
 
 - POST http://localhost:3000/user/boss/delete/:id
+
+### módulo follow
+
+- POST http://localhost:3000/follow/client/follow-to/:id
+
+Debe enviar **followerId** (persona que seguirá a alguien) que tomará del token y **followingId** (persona que será seguida) que tomará del **:id** enviado por params.
+
+- POST http://localhost:3000/follow/client/unfollow-to/:id
+
+Debe enviar **followerId** (persona que dejará de seguir a alguien) que tomará del token y **followingId** (persona que dejarán de seguir) que tomará del **:id** enviado por params.
