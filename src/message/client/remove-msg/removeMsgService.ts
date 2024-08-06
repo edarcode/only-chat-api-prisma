@@ -6,7 +6,6 @@ export const removeMsgService = async (
   receptorId: Uuid,
   createdAt: Date
 ) => {
-  console.log(issuerId, receptorId, createdAt);
   await connDb.message.delete({
     where: {
       issuerId_receptorId_createdAt: {

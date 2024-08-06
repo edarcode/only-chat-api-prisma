@@ -10,7 +10,6 @@ export const removeMsgController: Controller = async (_req, res, next) => {
     await removeMsgService(issuerId, receptorId, createdAt);
     res.sendStatus(204);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
