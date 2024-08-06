@@ -67,11 +67,11 @@ npm run dev
 
 ## Rutas
 
-### módulo welcome
+### Módulo welcome
 
 - http://localhost:3000
 
-### módulo user
+### Módulo user
 
 #### client
 
@@ -185,7 +185,9 @@ BODY
 
 - POST http://localhost:3000/user/boss/delete/:id
 
-### módulo follow
+### Módulo follow
+
+#### client
 
 - POST http://localhost:3000/follow/client/follow-to/:id
 
