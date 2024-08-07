@@ -11,6 +11,7 @@ export const getAccountService = async (id: Uuid) => {
       email: true,
       img: true,
       createdAt: true,
+      following: { select: { followingId: true } },
     },
   });
   return user;

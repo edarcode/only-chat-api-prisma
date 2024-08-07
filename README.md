@@ -160,7 +160,7 @@ Habrá rutas exclusivas para **BOSS**. Tener en cuenta los sgts formatos:
 
   Elimina el usuario asociado al token
 
-- GET http://localhost:3000/user/client/get
+- GET http://localhost:3000/user/client/get-account
 
   Permite consultar la cuenta del usuario asociado al token.
 

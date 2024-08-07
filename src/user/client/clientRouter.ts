@@ -9,4 +9,4 @@ export const clientRouter = Router();
 clientRouter.use("/search", searchUserRouter);
 clientRouter.use("/edit", editAccountRouter);
 clientRouter.use("/delete", deleteAccountRouter);
-clientRouter.use("/get", getAccountRouter);
+clientRouter.use("/get-account", getAccountRouter);
