@@ -7,24 +7,25 @@
 ## Herramientas
 
 - Express
+- TypeScript
 - Zod
 - Prisma
 - PostgreSQL
 
 ## Requisitos
 
-Debe tener la database lista para consumir y configurar las variables de entorno. Cree el archivo .env en la raíz del proyecto y dígite las sgt variable de entorno:
+Debe tener una **db** lista para consumir y configurar las variables de entorno. Cree el archivo **.env** en la raíz del proyecto:
 
 ```
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
 ```
 
-- **USER:** nombre del usuario de su base de datos
-- **PASSWORD:** contraseña para el usuario de su base de datos
-- **HOST:** nombre de su host (para el entorno local, es localhost)
-- **PORT:** puerto donde se ejecuta su servidor de base de datos (normalmente 5432para PostgreSQL)
-- **DATABASE:** nombre de la base de datos
-- **SCHEMA:** nombre del esquema dentro de la base de datos
+- **USER:** Nombre del usuario de su base de datos
+- **PASSWORD:** Contraseña para el usuario de su base de datos
+- **HOST:** Nombre de su host
+- **PORT:** Puerto donde se ejecuta su servidor de base de datos
+- **DATABASE:** Nombre de la base de datos
+- **SCHEMA:** Nombre del esquema dentro de la base de datos
 
 Otras variables de entorno necesarias:
 
@@ -33,19 +34,19 @@ PORT=3000
 
 BOSS_NAME="edarcode"
 BOSS_EMAIL="email@gmail.com"
-BOSS_PASSWORD="***"
+BOSS_PASSWORD="******"
 
 NODEMAILER_GMAIL="email@gmail.com"
 NODEMAILER_GMAIL_APP_PASSWORD="**** **** **** ****"
 
-SECRET_JWT="***"
+SECRET_JWT="******"
 
 API_URL="http://localhost:3000"
 ```
 
 ## Scripts
 
-En el package.json ya existen scripts para resetear, migrar, llenar la db con data fake.
+En el package.json ya existen scripts para resetear, migrar y rellenar la db.
 
 - instalar dependencias:
 
@@ -67,19 +68,44 @@ En el package.json ya existen scripts para resetear, migrar, llenar la db con da
 
 ## Rutas
 
+Habrá rutas exclusivas para **BOSS**. Tener en cuenta los sgts formatos:
+
+- **name:** 1 a 50 carácteres, sin carácteres especiales, sin números, no empezar con espacio, no finalizar con espacio, sin mayúsculas.
+
+- **username:** 3 y 15 caráteres, sin carácteres especiales, no empezar ni terminar con espacio.
+
+- **email:** Debe ser un email real.
+
+- **role:** Solo "CLIENT" o "BOSS".
+
+- **password:** 6 a 127 carácteres.
+
+- **img:** Cadena de texto en formato url, opcional.
+
+- **page:** Página deseada.
+
+- **take:** Cantidad de registros deseados.
+
 ### Módulo welcome
 
-- http://localhost:3000
+- GET http://localhost:3000
 
 ### Módulo user
 
-#### client
+#### Auth
 
-- POST http://localhost:3000/user/client/auth/signup
+- POST http://localhost:3000/user/auth/signup
 
-  Debe proporcionar un correo real dado que se enviará un mensaje de confirmación al mismo, solo se creará el registro si confirma antes de transcurrir 30min, de lo contrario simplemente repita el registro. Su contraseña se guardará encryptada.
+  Permite el resgistro de un usuario. Tener presente:
+
+  - Proporcionar un correo real dado que se enviará un mensaje de confirmación al mismo.
+
+  - Solo se creará el registro si confirma antes de transcurrir 30min.
+
+  - La contraseña se guardará encryptada.
 
   ```
+  BODY
   {
     "name": "edwin ortiz",
     "username": "edarcode",
@@ -88,9 +114,13 @@ En el package.json ya existen scripts para resetear, migrar, llenar la db con da
   }
   ```
 
-- POST http://localhost:3000/user/client/auth/login
+- POST http://localhost:3000/user/auth/login
 
-  Si el login es exitoso se enviará un token valido por 1 semana, y dentro del mismo información relacionada al usuario como: id, role, username, img.
+  Permite **auth** un usuario. Tener presente:
+
+  - Si el login es exitoso se enviará un token valido por 1 semana.
+
+  - Dentro del token habrá información relacionada al usuario como: **id, role, username, img**.
 
   ```
   BODY
@@ -100,13 +130,17 @@ En el package.json ya existen scripts para resetear, migrar, llenar la db con da
   }
   ```
 
-- POST http://localhost:3000/user/client/auth/refresh-token
+- POST http://localhost:3000/user/auth/refresh-token
 
-  Debe enviar el token por **headers** con la key **Authorization**. Valida el token y refresca si es valido el mismo.
+  Permite validar el token y refresca si es valido el mismo. Tener presente:
+
+  - Enviar el token por **headers** con la key **Authorization**.
+
+#### client
 
 - PUT http://localhost:3000/user/client/edit
 
-  Actualiza el usuario asociado al token
+  Actualiza el usuario asociado al token.
 
   ```
   BODY
@@ -120,7 +154,7 @@ En el package.json ya existen scripts para resetear, migrar, llenar la db con da
 
 - GET http://localhost:3000/user/client/search
 
-  Lee usuarios asociados al query **username** obligatorio
+  Lee usuarios asociados al query **username** (obligatorio)
 
 - DELETE http://localhost:3000/user/client/delete
 
@@ -128,19 +162,9 @@ En el package.json ya existen scripts para resetear, migrar, llenar la db con da
 
 #### boss
 
-Las rutas **boss** están protegidas. Debe enviar el token por **headers** con la key **Authorization**, además debe tener role BOSS
+Debe tener role **BOSS**.
 
 - POST http://localhost:3000/user/boss/create
-
-  - **name:** 1 a 50 carácteres, sin carácteres especiales, sin números, no empezar con espacio, no finalizar con espacio, sin mayúsculas.
-
-  - **username:** 3 y 15 caráteres, sin carácteres especiales, no empezar ni terminar con espacio.
-
-  - **role:** solo "CLIENT" o "BOSS".
-
-  - **password:** 6 a 127 carácteres.
-
-  - **img:** cadena de texto en formato url, opcional.
 
   ```
   BODY
@@ -165,7 +189,7 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
   - **page:**
   - **take:** Cantidad de resultados por página deseado
 
-- POST http://localhost:3000/user/boss/update/:id
+- PUT http://localhost:3000/user/boss/update/:id
 
   ```
   BODY
@@ -187,7 +211,7 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
 
 - POST http://localhost:3000/follow/client/follow-to/:id
 
-  Esta ruta estable un seguimiento de una persona **A** a otra **B**. Se ocupan 2 cosas:
+  Estable un seguimiento de una persona **A** a otra **B**. Se ocupan 2 cosas:
 
   - **followerId:** Persona que seguirá a alguien, el cúal se tomará del id del token.
 
@@ -195,11 +219,15 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
 
 - POST http://localhost:3000/follow/client/unfollow-to/:id
 
-  Esta ruta elimina el seguimiento de una persona **A** a otra **B**. Se ocupan 2 cosas:
+  Elimina el seguimiento de una persona **A** a otra **B**. Se ocupan 2 cosas:
 
   - **followerId:** Persona que dejará de seguir a alguien, el cúal se tomará del id del token.
 
   - **followingId:** Persona que dejarán de seguir, el cúal debe enviar por params **:id**.
+
+#### boss
+
+- ...
 
 ### Módulo message
 
@@ -243,3 +271,7 @@ Las rutas **boss** están protegidas. Debe enviar el token por **headers** con l
     "createdAt" : "2024-08-06 19:22:03.98Z"
   }
   ```
+
+#### boss
+
+- ...
