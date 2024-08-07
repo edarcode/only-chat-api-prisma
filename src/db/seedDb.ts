@@ -1,6 +1,5 @@
 import { Role } from "@prisma/client";
 import bcrypt from "bcrypt";
-import z from "zod";
 import { BCRYPT } from "../constant/bcrypt";
 import "../service/dotenv";
 import { connDb } from "./connDb";
@@ -19,35 +18,12 @@ async function seedDb() {
     name: process.env.BOSS_NAME,
     username: process.env.BOSS_USERNAME,
     email: process.env.BOSS_EMAIL,
-    password: process.env.BOSS_PASSWORD,
+    password: await bcrypt.hash(
+      process.env.BOSS_PASSWORD as string,
+      BCRYPT.salt
+    ),
     role: Role.BOSS,
-  };
-
-  const bossSchema = z.object({
-    name: z.string(),
-    username: z.string(),
-    email: z.string(),
-    password: z.string(),
-    role: z.enum([Role.BOSS]),
-  });
-
-  const { success, data } = bossSchema.safeParse(boss);
-
-  if (!success) {
-    console.log(
-      "\x1b[31m%s\x1b[0m",
-      "falta info (.env) para crear usuario BOSS"
-    );
-    return;
-  }
-
-  const passHashed = await bcrypt.hash(data.password, BCRYPT.salt);
-
-  await connDb.user.create({
-    data: { ...data, password: passHashed },
-  });
-
-  // ___________________________________________________________________________
+  } as Boss;
 
   const firstClient = {
     name: "loraine",
@@ -57,5 +33,15 @@ async function seedDb() {
     role: Role.CLIENT,
   };
 
-  await connDb.user.create({ data: firstClient });
+  await connDb.user.createMany({
+    data: [boss, firstClient],
+  });
 }
+
+type Boss = {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  role: Role;
+};
