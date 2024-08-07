@@ -8,7 +8,6 @@ export const removeMsgRouter = Router();
 
 removeMsgRouter.delete(
   "/",
-  verifyToken,
-  verifyBody(removeMsgSchema),
+  [verifyToken, verifyBody(removeMsgSchema)],
   removeMsgController
 );

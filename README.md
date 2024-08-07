@@ -92,7 +92,7 @@ Habrá rutas exclusivas para **BOSS**. Tener en cuenta los sgts formatos:
 
 ### Módulo user
 
-#### Auth
+#### auth
 
 - POST http://localhost:3000/user/auth/signup
 
@@ -163,6 +163,10 @@ Habrá rutas exclusivas para **BOSS**. Tener en cuenta los sgts formatos:
 - GET http://localhost:3000/user/client/get-account
 
   Permite consultar la cuenta del usuario asociado al token.
+
+- GET http://localhost:3000/msg/client/get-chat/:id
+
+  Permite consultar el chat de una persona **A** a otra **B**
 
 #### boss
 
