@@ -235,15 +235,13 @@ Debe tener role **BOSS**.
 
 - POST http://localhost:3000/msg/client/send-msg/:id
 
-  Esta ruta guardará un mensaje enviado de una persona **A** a otra **B**. Se ocupan 3 cosas:
+  Guardará un mensaje enviado de una persona **A** a otra **B**. Se ocupan 3 cosas:
 
   - **issuerId:** Persona que enviará un msg, el cúal se tomará del **id** del token.
 
-  - **receptorId:** Persona que recibirá un msg.
+  - **receptorId:** Persona que recibirá un msg. Debe enviarlo por params **:id**.
 
-  - **text:** Cuerpo del mensaje
-
-  El **receptorId y text** debe enviarlo por body:
+  - **text:** Cuerpo del mensaje. Debe enviarlo por body.
 
   ```
   BODY
