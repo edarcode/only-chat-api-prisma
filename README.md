@@ -160,6 +160,10 @@ Habrá rutas exclusivas para **BOSS**. Tener en cuenta los sgts formatos:
 
   Elimina el usuario asociado al token
 
+- GET http://localhost:3000/user/client/get
+
+  Permite consultar la cuenta del usuario asociado al token.
+
 #### boss
 
 Debe tener role **BOSS**.
@@ -204,6 +208,8 @@ Debe tener role **BOSS**.
   ```
 
 - POST http://localhost:3000/user/boss/delete/:id
+
+- GET http://localhost:3000/user/boss/read/:id
 
 ### Módulo follow
 
