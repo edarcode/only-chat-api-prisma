@@ -4,10 +4,9 @@ import { connDb } from "../../../db/connDb";
 import { JWT } from "../../../constant/jwt";
 import { EdarErr } from "../../../error/EdarErr";
 import { z } from "zod";
-
 import { Uuid } from "../../../types";
-import { Role } from "@prisma/client";
 import { loginSchema } from "./loginSchema";
+import { Role } from "../../../constant/role";
 
 export const loginService = async (params: Params) => {
   const { email, password } = params;

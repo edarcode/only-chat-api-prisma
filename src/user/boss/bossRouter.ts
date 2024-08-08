@@ -5,12 +5,12 @@ import { readUserRouter } from "./read-user/readUserRouter";
 import { updateUserRouter } from "./update-user/updateUserRouter";
 import { verifyToken } from "../../middleware/verifyToken";
 import { verifyTokenRole } from "../../middleware/verifyTokenRole";
-import { Role } from "@prisma/client";
 import { readUserByIdRouter } from "./read-user-by-id/readUserByIdRouter";
+import { ROLE } from "../../constant/role";
 
 export const bossRouter = Router();
 
-bossRouter.use(verifyToken, verifyTokenRole(Role.BOSS));
+bossRouter.use(verifyToken, verifyTokenRole(ROLE.boss));
 
 bossRouter.use("/create", createUserRouter);
 bossRouter.use("/read", readUserRouter);

@@ -1,4 +1,4 @@
-import { Role } from "@prisma/client";
 import { z } from "zod";
+import { ROLE } from "../constant/role";
 
-export const roleSchema = z.enum([Role.BOSS, Role.CLIENT]);
+export const roleSchema = z.enum([ROLE.boss, ROLE.client]);

@@ -8,7 +8,7 @@ export const readUserService = async (params: Params = {}) => {
 
   const where: Where = {
     ...extraParams,
-    name: { contains: name, mode: "insensitive" },
+    name: { contains: name },
   };
 
   const totalUsers = await connDb.user.count({ where });

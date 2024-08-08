@@ -1,4 +1,4 @@
-import { Role } from "@prisma/client";
+import { Role } from "../constant/role";
 import { EdarErr } from "../error/EdarErr";
 import { Middleware } from "../types";
 

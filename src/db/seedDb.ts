@@ -1,8 +1,8 @@
-import { Role } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { BCRYPT } from "../constant/bcrypt";
 import "../service/dotenv";
 import { connDb } from "./connDb";
+import { Role, ROLE } from "../constant/role";
 
 seedDb()
   .catch((e) => {
@@ -22,7 +22,7 @@ async function seedDb() {
       process.env.BOSS_PASSWORD as string,
       BCRYPT.salt
     ),
-    role: Role.BOSS,
+    role: ROLE.boss,
   } as Boss;
 
   const firstClient = {
@@ -30,7 +30,7 @@ async function seedDb() {
     username: "lora",
     email: "lora@gmail.com",
     password: await bcrypt.hash("123456", BCRYPT.salt),
-    role: Role.CLIENT,
+    role: ROLE.client,
   };
 
   await connDb.user.createMany({
