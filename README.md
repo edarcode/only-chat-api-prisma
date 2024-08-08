@@ -32,7 +32,8 @@ Otras variables de entorno necesarias:
 ```
 PORT=3000
 
-BOSS_NAME="edarcode"
+BOSS_NAME="edar"
+BOSS_USERNAME="edarcode"
 BOSS_EMAIL="email@gmail.com"
 BOSS_PASSWORD="******"
 
