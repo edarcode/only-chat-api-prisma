@@ -108,7 +108,7 @@ Habrá rutas exclusivas para **BOSS**. Tener en cuenta los sgts formatos:
   ```
   BODY
   {
-    "name": "edwin ortiz",
+    "name": "edar",
     "username": "edarcode",
     "email": "email@gmail.com",
     "password": "******"
