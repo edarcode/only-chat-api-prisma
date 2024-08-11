@@ -16,8 +16,6 @@
 
 Configurar las variables de entorno, note el **example.env**.
 
-```
-
 ## Scripts
 
 En el package.json ya existen scripts para resetear, migrar y rellenar la db.
@@ -25,25 +23,19 @@ En el package.json ya existen scripts para resetear, migrar y rellenar la db.
 - instalar dependencias:
 
 ```
-
 npm i
-
 ```
 
 - rellenar la db:
 
 ```
-
 npm run dbnew
-
 ```
 
 - luego
 
 ```
-
 npm run dev
-
 ```
 
 ## Rutas
@@ -88,10 +80,10 @@ Permite el resgistro de un usuario. Tener presente:
 
 BODY
 {
-"name": "edar",
-"username": "edarcode",
-"email": "email@gmail.com",
-"password": "**\*\***"
+  "name": "edar",
+  "username": "edarcode",
+  "email": "email@gmail.com",
+  "password": "******"
 }
 
 ```
@@ -108,8 +100,8 @@ Permite **auth** un usuario. Tener presente:
 
 BODY
 {
-"email": "correo@gmail.com",
-"password": "**\*\***"
+  "email": "correo@gmail.com",
+  "password": "******"
 }
 
 ```
@@ -130,10 +122,10 @@ Actualiza el usuario asociado al token.
 
 BODY
 {
-"name": "nuevo nombre",
-"username": "nuevo username",
-"email": "newemail@gmail.com",
-"password": "**\*\***"
+  "name": "nuevo nombre",
+  "username": "nuevo username",
+  "email": "newemail@gmail.com",
+  "password": "******"
 }
 
 ```
@@ -164,12 +156,12 @@ Debe tener role **BOSS**.
 
 BODY
 {
-"name": "fake name",
-"username": "fakeusername",
-"email": "fake@gmail.com",
-"password": "123456",
-"role": "CLIENT",
-"img": "https:www.img.com"
+  "name": "fake name",
+  "username": "fakeusername",
+  "email": "fake@gmail.com",
+  "password": "123456",
+  "role": "CLIENT",
+  "img": "https:www.img.com"
 }
 
 ```
@@ -191,12 +183,12 @@ Posibles filtros (QUERY):
 
 BODY
 {
-"name": "fake name two",
-"username": "fakeusername2",
-"email": "fake2@gmail.com",
-"password": "1234567",
-"role": "CLIENT",
-"img": "https:www.img.com"
+  "name": "fake name two",
+  "username": "fakeusername2",
+  "email": "fake2@gmail.com",
+  "password": "1234567",
+  "role": "CLIENT",
+  "img": "https:www.img.com"
 }
 
 ```
@@ -247,7 +239,7 @@ Guardará un mensaje enviado de una persona **A** a otra **B**. Se ocupan 3 cosa
 
 BODY
 {
-"text": "Hola, ¿cómo estás?"
+  "text": "Hola, ¿cómo estás?"
 }
 
 ```
@@ -268,8 +260,8 @@ El **receptorId y createdAt** debe enviarlo por body:
 
 BODY
 {
-"receptorId" : "2ba0fdf2-e11c-4894-9832-9afd362606f8",
-"createdAt" : "2024-08-06 19:22:03.98Z"
+  "receptorId" : "2ba0fdf2-e11c-4894-9832-9afd362606f8",
+  "createdAt" : "2024-08-06 19:22:03.98Z"
 }
 
 ```
@@ -277,4 +269,3 @@ BODY
 #### boss
 
 - ...
-```

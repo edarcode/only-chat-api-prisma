@@ -6,7 +6,7 @@ export const followToController: Controller = async (req, res, next) => {
   try {
     const tokenInfo = res.locals.tokenInfo as TokenInfo;
     await followToService(tokenInfo.id, req.params.id as Uuid);
-    res.sendStatus(201);
+    res.status(201).json({ msg: "Follow successfully" });
   } catch (error) {
     next(error);
   }
