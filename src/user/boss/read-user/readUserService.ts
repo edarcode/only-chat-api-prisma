@@ -23,7 +23,7 @@ export const readUserService = async (params: Params = {}) => {
       img: true,
       createdAt: true,
       role: true,
-      _count: { select: { followers: true, following: true } },
+      _count: true,
     },
   });
 

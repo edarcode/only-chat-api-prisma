@@ -18,20 +18,20 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  followers Follow[] @relation("followers") // Representa una lista de usuarios que siguen a este usuario
-  following Follow[] @relation("following") // Representa una lista de usuarios que este usuario sigue.
+  followers Follow[] @relation("followers")
+  following Follow[] @relation("following")
 
   issuers   Message[] @relation("issuers")
   receptors Message[] @relation("receptors")
 }
 
 model Follow {
-  followerId  String // usuario que sigue a otro usuario
-  followingId String // usuario que está siendo seguido
+  followerId  String
+  followingId String
   createdAt   DateTime @default(now())
 
-  followers User @relation("followers", fields: [followingId], references: [id], onDelete: Cascade) // invertí los id fields
-  following User @relation("following", fields: [followerId], references: [id], onDelete: Cascade)
+  follower  User @relation("followers", fields: [followerId], references: [id])
+  following User @relation("following", fields: [followingId], references: [id])
 
   @@id([followerId, followingId])
 }
@@ -42,8 +42,8 @@ model Message {
   createdAt  DateTime @default(now())
   text       String
 
-  issuers   User @relation("issuers", fields: [receptorId], references: [id], onDelete: Cascade) // invertí los id fields
-  receptors User @relation("receptors", fields: [issuerId], references: [id], onDelete: Cascade)
+  issuer   User @relation("issuers", fields: [issuerId], references: [id], onDelete: Cascade)
+  receptor User @relation("receptors", fields: [receptorId], references: [id], onDelete: Cascade)
 
   @@id([issuerId, receptorId, createdAt])
 }

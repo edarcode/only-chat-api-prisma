@@ -2,8 +2,10 @@ import { Prisma } from "@prisma/client";
 import { connDb } from "../../../db/connDb";
 import { z } from "zod";
 import { searchUserSchema } from "./searchUserSchema";
+import { Uuid } from "../../../types";
 
-export const searchUserService = async (params: Params) => {
+export const searchUserService = async (_userId: Uuid, params: Params) => {
+  // todo agg si el _userId que consulta ya sigue o no a el user que están consultando
   const { page = 1, take = 6, username } = params;
 
   const where: Where = { username: { contains: username } };

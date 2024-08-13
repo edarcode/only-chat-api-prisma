@@ -14,7 +14,7 @@ seedDb()
   });
 
 async function seedDb() {
-  const boss = {
+  const BOSS = {
     name: process.env.BOSS_NAME,
     username: process.env.BOSS_USERNAME,
     email: process.env.BOSS_EMAIL,
@@ -25,16 +25,16 @@ async function seedDb() {
     role: ROLE.boss,
   } as Boss;
 
-  const firstClient = {
+  const LORA = {
     name: "loraine",
     username: "lora",
     email: "lora@gmail.com",
     password: await bcrypt.hash("123456", BCRYPT.salt),
     role: ROLE.client,
-  };
+  } as const;
 
   await connDb.user.createMany({
-    data: [boss, firstClient],
+    data: [BOSS, LORA],
   });
 }
 
